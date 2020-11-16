@@ -6,17 +6,44 @@
     <link rel="icon" type="image/icon" href="images/student.ico">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/webcam-easy.js"></script>
+    <script src="js/student.js" defer></script>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/webcam.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-    <div class="container-fluid" id="header1">
-        <div class="row">
-            <div class="col-lg-12">
-                <span>Welcome, STUDENT_NAME_HERE</span>
-            </div>
+        <main id="webcam-app">
+        <div class="form-control webcam-start" id="webcam-control">
+                <label class="form-switch">
+                <input type="checkbox" id="webcam-switch">
+                <i></i> 
+                <span id="webcam-caption">Click to Start Camera</span>
+                </label>      
+                <button id="cameraFlip" class="btn d-none"></button>                  
         </div>
-    </div>
+        <div id="errorMsg" class="col-12 col-md-6 alert-danger d-none">
+            Fail to start camera, please allow permision to access camera. <br/>
+            <button id="closeError" class="btn btn-primary ml-3">OK</button>
+        </div>
+        <div class="md-modal md-effect-12">
+            <div id="app-panel" class="app-panel md-content row p-0 m-0">     
+                <div id="webcam-container" class="webcam-container col-12 d-none p-0 m-0">
+                    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+                    <canvas id="canvas" class="d-none"></canvas>
+                    <div class="flash"></div>
+                    <audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio>
+                </div>
+                <div id="cameraControls" class="cameraControls">
+                    <a href="#" id="exit-app" title="Exit" class="d-none"><i class="material-icons">clear</i></a>
+                    <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
+                    <a href="#" id="download-photo" download="selfie.png" target="_blank" title="Submit" class="d-none"><i class="material-icons">publish</i></a>  
+                    <a href="#" id="resume-camera"  title="Retry" class="d-none"><i class="material-icons">replay</i></a>
+                </div>
+            </div>        
+        </div>
+        <div class="md-overlay"></div>
 </body>
 </html>
