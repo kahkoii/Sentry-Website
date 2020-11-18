@@ -1,7 +1,12 @@
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
-const snapSoundElement = document.getElementById('snapSound');
-const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+const webcam = new Webcam(webcamElement, 'user', canvasElement);
+
+$('#submit-photo').click(function() {
+    var data = document.getElementById("hidden-image").value;
+    console.log(data);
+    document.getElementById("form").submit();
+});
 
 $("#webcam-switch").change(function () {
     if(this.checked){
@@ -68,7 +73,7 @@ function cameraStopped(){
 $("#take-photo").click(function () {
     beforeTakePhoto();
     let picture = webcam.snap();
-    document.querySelector('#download-photo').href = picture;
+    document.querySelector('#hidden-image').value = picture;
     afterTakePhoto();
 });
 
@@ -88,8 +93,8 @@ function afterTakePhoto(){
     $('#canvas').removeClass('d-none');
     $('#take-photo').addClass('d-none');
     $('#exit-app').removeClass('d-none');
-    $('#download-photo').removeClass('d-none');
-    $('#resume-camera').removeClass('d-none');
+    $('#submit-photo').removeClass('d-none');
+    $('#retry').removeClass('d-none');
     $('#cameraControls').removeClass('d-none');
 }
 
@@ -99,11 +104,11 @@ function removeCapture(){
     $('#cameraControls').removeClass('d-none');
     $('#take-photo').removeClass('d-none');
     $('#exit-app').addClass('d-none');
-    $('#download-photo').addClass('d-none');
-    $('#resume-camera').addClass('d-none');
+    $('#submit-photo').addClass('d-none');
+    $('#retry').addClass('d-none');
 }
 
-$("#resume-camera").click(function () {
+$("#retry").click(function () {
     webcam.stream()
         .then(facingMode =>{
             removeCapture();
