@@ -6,10 +6,18 @@ var fs = require('fs');
 var dal = require('./DAL')
 
 router.get('/', function (req, res){
+    res.render('login', { title: 'Login'});
+})
+
+// router.post('/', function (req, res){
+//     res.render
+// })
+
+router.get('/upload', function (req, res){
     res.render('studentHome', { title: 'Home' });
 })
 
-router.post('/', parser, function (req, res){
+router.post('/upload', parser, function (req, res){
     var studentNo = 'S12345678A';
     var image = req.body.image.replace(/^data:image\/png;base64,/, "");
     fs.writeFile("./temp/out.png", image, 'base64', function(err) {
