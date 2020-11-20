@@ -9,9 +9,9 @@ router.get('/', function (req, res){
     res.render('login', { title: 'Login'});
 })
 
-// router.post('/', function (req, res){
-//     res.render
-// })
+router.post('/', function(req, res){
+    res.render('studentHome', { title: 'Home'})
+})
 
 router.get('/upload', function (req, res){
     res.render('studentHome', { title: 'Home' });
@@ -26,7 +26,7 @@ router.post('/upload', parser, function (req, res){
         }
     });
     dal.upload(studentNo);
-    res.send('Post Successful');
+    res.render('success', { title: 'Success'});
 })
 
 module.exports = router;
