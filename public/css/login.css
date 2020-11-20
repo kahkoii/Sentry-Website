@@ -5,6 +5,7 @@
   
   body {
     background-image: url('../images/loginBackground.jpeg');
+    background-repeat: no-repeat;
   }
   
   .card-signin {
