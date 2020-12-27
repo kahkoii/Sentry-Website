@@ -1,16 +1,20 @@
 // Packages
 var express = require('express');
 var app = express();
+var session = require('express-session');
 
 // Port
 var PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
-// Define templating engine
+// Settings
 app.set('view engine', 'ejs');
-
-// Use static files
 app.use(express.static('./public'));
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Routing
 var student = require('./controllers/student');

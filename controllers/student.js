@@ -3,21 +3,37 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var parser = bodyParser.urlencoded({ extended: false, limit: '10mb' });
 var fs = require('fs');
-var dal = require('./DAL')
+var dal = require('./DAL');
+const session = require('express-session');
 var studentID = 'S12345678A';
 
-router.get('/', function (req, res){
+router.get('/login', function (req, res){
     res.render('login', { title: 'Login'});
 })
 
-router.post('/', parser, function(req, res){
-    studentID = req.body.studentID;
-    console.log(studentID);
-    res.render('studentHome', { title: 'Home'})
+router.post('/login', parser, function(req, res){
+    req.session.studentID = req.body.studentID;
+    req.session.validated = true;
+    console.log(req.session.studentID);
+    res.redirect('/');
+})
+
+router.get('/', function (req, res){
+    if (!req.session.validated){
+        res.redirect('/login');
+    }
+    else{
+        res.render('studentHome', { title: 'Home' });
+    }
 })
 
 router.get('/upload', function (req, res){
-    res.render('studentHome', { title: 'Home' });
+    if (!req.session.validated){
+        res.redirect('/login');
+    }
+    else{
+        res.render('studentHome', { title: 'Home' });
+    }
 })
 
 router.post('/upload', parser, function (req, res){
