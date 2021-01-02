@@ -30,7 +30,7 @@ router.post('/student/upload', upload.single('image'), (req, res) => {
 })
 
 router.get('/', function (req, res){
-    res.send('==Welcome to API Documentation==After api, add  \'/student/upload/StudentID\'');
+    res.send('Visit " https://github.com/kahkoii/Sentry-Website/blob/main/README.md " for documentation');
 })
 
 module.exports = router;
