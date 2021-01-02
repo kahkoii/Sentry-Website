@@ -10,6 +10,7 @@ app.listen(PORT);
 // Settings
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.use(express.json());
 app.use(session({
     secret: 'secret-key',
     resave: false,
