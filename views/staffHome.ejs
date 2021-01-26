@@ -205,27 +205,20 @@
 													<th scope="col">Date</th>
 													<th scope="col">Time</th>
 													<th scope="col">ID</th>
+													<th scope="col">Temp</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>Entry</td>
-													<td>12/1/21</td>
-													<td>08:16</td>
-													<td>S10193726G</td>
-												</tr>
-												<tr>
-													<td>Entry</td>
-													<td>11/1/21</td>
-													<td>13:07</td>
-													<td>S10197381T</td>
-												</tr>
-												<tr>
-													<td>Exit</td>
-													<td>11/1/21</td>
-													<td>12:52</td>
-													<td>S10193728D</td>
-												</tr>
+												<!--this for loop displays values in items-->
+												<% items.forEach(function(item) { %>
+													<tr>
+														<td><%= item.entry[0].type %></td>
+														<td><%= item.entry[0].date %></td>
+														<td><%= item.entry[0].timeString %> Hrs</td>
+														<td><%= item._id %></td>
+														<td><%= item.entry[0].temp %></td>
+													</tr>
+												<% }); %>
 											</tbody>
 										</table>
 									</div>
