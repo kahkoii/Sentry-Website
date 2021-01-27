@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="../css/staff.css">
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script type='text/javascript'> var data =<%-JSON.stringify(raw)%> </script>
 </head>
 <body>
 	<div class="wrapper">
@@ -116,40 +118,12 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header ">
-										<h4 class="card-title">Activity Log</h4>
-										<p class="card-category">Entry and Exit Records</p>
+										<h4 class="card-title">Traffic</h4>
+										<p class="card-category">Frequency of entries and exits over time</p>
 									</div>
+									<!--PLOT-->
 									<div class="card-body">
-										<table class="table table-head-bg-success table-striped table-hover">
-											<thead>
-												<tr>
-													<th scope="col">Type</th>
-													<th scope="col">Date</th>
-													<th scope="col">Time</th>
-													<th scope="col">ID</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Entry</td>
-													<td>12/1/21</td>
-													<td>08:16</td>
-													<td>S10193726G</td>
-												</tr>
-												<tr>
-													<td>Entry</td>
-													<td>11/1/21</td>
-													<td>13:07</td>
-													<td>S10197381T</td>
-												</tr>
-												<tr>
-													<td>Exit</td>
-													<td>11/1/21</td>
-													<td>12:52</td>
-													<td>S10193728D</td>
-												</tr>
-											</tbody>
-										</table>
+										<div id="plot"></div>
 									</div>
 								</div>
 							</div>
@@ -170,5 +144,6 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/ready.min.js"></script>
+<script src="../js/statistics.js"></script>
 
 </html>

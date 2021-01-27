@@ -20,7 +20,16 @@ router.get('/', function (req, res){
 })
 
 router.get('/statistics', function (req, res){
-    res.render('staffStatistics');
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err; 
+        var dbo = db.db("Sentry");
+        dbo.collection("Logs").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            var data = result; 
+            db.close();
+            res.render('staffStatistics', {raw: data});
+        });
+    });
 })
 
 module.exports = router;
