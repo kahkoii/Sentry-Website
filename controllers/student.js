@@ -38,12 +38,7 @@ router.get('/upload', function (req, res){
 
 router.post('/upload', parser, function (req, res){
     var image = req.body.image.replace(/^data:image\/png;base64,/, "");
-    fs.writeFile("./temp/out.png", image, 'base64', function(err) {
-        if (err != null){
-            console.log(err);
-        }
-    });
-    dal.upload(studentID);
+    dal.upload(studentID, image);
     res.render('success', { title: 'Success'});
 })
 

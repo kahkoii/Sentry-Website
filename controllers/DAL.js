@@ -1,37 +1,20 @@
-function uploadImg(studentNo){
-    const mongo = require('mongodb');
+function uploadImg(studentNo, image){
     const fs = require('fs');
-    const cert = require('../config.json');
-    var fileName = getRandKey();
+    const MongoClient = require('mongodb').MongoClient;
+    const url = "mongodb+srv://dbUser:Asteria987@cluster0.plmvw.mongodb.net/Cluster0?retryWrites=true&w=majority";
 
-    rename(fileName);
-
-    function getRandKey(){
-        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var result = '';
-        for (var i = 0; i < 16; i++){
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-        }
-        return result + '.jpg';
-    }
-
-    function rename(fileName){
-        // Rename file
-        fs.rename('./temp/out.png', './temp/' + fileName, function(err){
-            if (err != null)
-                throw err;
-        })
-        updateDB();
-    }
-    
-    function updateDB(){
-        console.log("UPLOAD TO DB IN PROGRESS");
-        //deleteLocalFile(fileName);
-    }
-
-    function deleteLocalFile(fileName){
-        fs.unlinkSync('./temp/' + fileName);
-    }
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("Sentry");
+        //place json here
+        var myobj = { name: 'oH haK eewS', base64_img: image};
+        //Inside .collection("here") is the name of the place where the item is stored
+        dbo.collection("Images").insertOne(myobj, function(err, res) {
+          if (err) throw err;
+          console.log("1 document inserted");
+          db.close();
+        });
+    });
 }
 
 module.exports = { upload : uploadImg };
