@@ -6,9 +6,9 @@ function uploadImg(studentNo, image){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("Sentry");
-        //place json here
-        var myobj = { name: 'oH haK eewS', base64_img: image};
-        //Inside .collection("here") is the name of the place where the item is stored
+        // Json object
+        var myobj = { "_id": studentNo, "name": "oH haK eewS", "Images": [{image}]};
+
         dbo.collection("Images").insertOne(myobj, function(err, res) {
           if (err) throw err;
           console.log("1 document inserted");
