@@ -7,7 +7,7 @@ function uploadImg(studentNo, image){
         if (err) throw err;
         var dbo = db.db("Sentry");
         // Json object
-        var myobj = { "_id": studentNo, "name": "oH haK eewS", "Images": [{image}]};
+        var myobj = { "_id": studentNo, "name": "oH haK eewS", "Images": [image]};
 
         dbo.collection("Images").insertOne(myobj, function(err, res) {
           if (err) throw err;
