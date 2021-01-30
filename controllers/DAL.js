@@ -21,14 +21,37 @@ function uploadImg(studentNo, image){
         if (result.matchedCount == 0)
           console.log("A document is created");
         else
-          console.log(
-            `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
-          );
+          console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`);
+
+        // Send status to MQTT server
+        sendMQTT(studentNo);
+
       } finally {
         await client.close();
       }
     }
     run().catch(console.dir);
+}
+
+function sendMQTT(studentNo){
+  const mqtt = require('mqtt');
+  const options = {
+    clientId : "Sentry-Webserver",
+    port : 1883
+  }
+  var client = mqtt.connect("mqtt://broker.emqx.io", options);
+  
+  client.on("connect", function(){
+    console.log("Connected to MQTT server, sending message...");
+    client.publish("UniqueSentryImagePassable", studentNo);
+    console.log("Message sent, disconnecting from MQTT server.")
+    client.end();
+  });
+
+  client.on("error", function(error){
+    console.log("Failed to connect " + error);
+    process.exit(1);
+  });
 }
 
 module.exports = { upload : uploadImg };
