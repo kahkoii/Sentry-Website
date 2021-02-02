@@ -113,6 +113,7 @@
 								<% raw.forEach(function(item) { %>
 									<% var img = "data:image/png;base64," + item.image %> 
 									<div class="pic_holder">
+										<p><%= item._id %></p>
 										<img src=<%= img %> class="pic"> 
 									<button class="btn btn-lg btn-primary btn-block text-uppercase" id=<%= item._id %> onclick="submit(this.id)">Verify</button>
 									</div>

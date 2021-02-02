@@ -7,7 +7,9 @@
 
 .pic_holder{
   padding: 14px;
+  padding-top: 4px;
   margin-right: 30px;
+  font-weight: bold;
 }
 
 .verifybtn{
