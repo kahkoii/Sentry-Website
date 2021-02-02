@@ -26,9 +26,6 @@ function uploadImg(studentNo, image){
         else
           console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`);
 
-        // Send status to MQTT server
-        sendMQTT(studentNo);
-
       } finally {
         await client.close();
       }
@@ -61,6 +58,10 @@ function verified(studentNo){
           console.log(
             `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
           );
+
+        // Send status to MQTT server
+        sendMQTT(studentNo);
+
       } finally {
         await client.close();
       }
