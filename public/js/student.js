@@ -3,8 +3,6 @@ const canvasElement = document.getElementById('canvas');
 const webcam = new Webcam(webcamElement, 'user', canvasElement);
 
 $('#submit-photo').click(function() {
-    var data = document.getElementById("hidden-image").value;
-    console.log(data);
     document.getElementById("form").submit();
 });
 

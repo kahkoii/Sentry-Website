@@ -1,3 +1,26 @@
+.pic{
+  width: 220px;
+  height: 220px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.pic_holder{
+  padding: 14px;
+  margin-right: 30px;
+}
+
+.verifybtn{
+  padding: 10px !important;
+  margin: 10px;
+
+}
+
+#img_grid{
+  padding: 30px 48px 30px 48px;
+  min-height: 557px;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
